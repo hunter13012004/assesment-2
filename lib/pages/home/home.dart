@@ -44,6 +44,8 @@ class _HomeState extends State<Home> {
               itemBuilder: (context, index) {
                 bool isSelected = index == selectedindex;
                 return CustomContainer(
+                  subtextcolor:
+                      isSelected == true ? Colors.white : Colors.black54,
                   textcolor: isSelected == true ? Colors.white : Colors.black,
                   color: isSelected == true
                       ? Colors.deepPurple
@@ -79,6 +81,7 @@ class _HomeState extends State<Home> {
         GestureDetector(
           onTap: () {
             showModalBottomSheet(
+              shape: BeveledRectangleBorder(),
               context: context,
               builder: (context) {
                 return Container(
@@ -112,12 +115,12 @@ class _HomeState extends State<Home> {
                             Text(
                               'Subtotal',
                               style: TextStyle(
-                                  fontSize: 16.sp, fontWeight: FontWeight.w600),
+                                  fontSize: 14.sp, fontWeight: FontWeight.w600),
                             ),
                             Text(
                                 "₹ ${datacontroller.finaldata?[selectedindex].rs.toString() ?? ''}",
                                 style: TextStyle(
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w600))
                           ],
                         ),
@@ -126,12 +129,13 @@ class _HomeState extends State<Home> {
                           children: [
                             Text('This recharge is GST FREE',
                                 style: TextStyle(
-                                    fontSize: 16.sp,
+                                    color: Colors.deepPurple.shade300,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w600)),
                             Text('₹0',
                                 style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w600))
                           ],
                         ),
@@ -140,12 +144,12 @@ class _HomeState extends State<Home> {
                           children: [
                             Text('Total',
                                 style: TextStyle(
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w600)),
                             Text(
                                 '₹ ${datacontroller.finaldata?[selectedindex].rs.toString() ?? ''}',
                                 style: TextStyle(
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w600)),
                           ],
                         ),
@@ -162,11 +166,13 @@ class _HomeState extends State<Home> {
                                 Text(
                                     'Gift ₹ ${datacontroller.finaldata?[selectedindex].gift.toString() ?? ''}',
                                     style: TextStyle(
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w600)),
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.deepPurple.shade400)),
                                 Text(
                                     'Extra ₹ ${datacontroller.finaldata?[selectedindex].gift.toString() ?? ''} cashback in wallet after recharge ',
                                     style: TextStyle(
+                                        color: Colors.deepPurple.shade400,
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.w600))
                               ],
@@ -186,7 +192,7 @@ class _HomeState extends State<Home> {
                               child: Text(
                             'Proceed to pay',
                             style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 18.sp,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600),
                           )),
@@ -202,13 +208,13 @@ class _HomeState extends State<Home> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: Colors.deepPurple),
-            height: 50,
+            height: 50.h,
             width: MediaQuery.of(context).size.width.w / 1.8,
             child: Center(
                 child: Text(
               'Proceed to pay',
               style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 18.sp,
                   color: Colors.white,
                   fontWeight: FontWeight.w600),
             )),

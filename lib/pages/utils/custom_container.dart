@@ -7,6 +7,7 @@ class CustomContainer extends StatelessWidget {
   final Function() ontap;
   final Color color;
   final Color textcolor;
+  final Color subtextcolor;
 
   const CustomContainer(
       {super.key,
@@ -14,7 +15,8 @@ class CustomContainer extends StatelessWidget {
       required this.gift,
       required this.ontap,
       required this.color,
-      required this.textcolor});
+      required this.textcolor,
+      required this.subtextcolor});
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +46,19 @@ class CustomContainer extends StatelessWidget {
               Text(
                 '₹ ${rs}',
                 style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                     color: textcolor),
               ),
               SizedBox(
-                height: 2.h,
+                height: 0.h,
               ),
               Text(
                 'Gift ₹ ${gift}',
                 style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
-                    color: textcolor),
+                    color: subtextcolor),
               )
             ],
           )),
