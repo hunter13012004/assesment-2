@@ -20,8 +20,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Wallet balance : 0 rs',
-          style: TextStyle(fontWeight: FontWeight.w600),
+          'Wallet Balance : 0 rs',
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18.sp),
         ),
       ),
       body: _buildUi(),
@@ -34,32 +34,34 @@ class _HomeState extends State<Home> {
       child: Column(
         children: [
           Expanded(
-            child: GridView.builder(
-              itemCount: datacontroller.finaldata?.length ?? 0,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 1 / 0.7),
-              itemBuilder: (context, index) {
-                bool isSelected = index == selectedindex;
-                return CustomContainer(
-                  subtextcolor:
-                      isSelected == true ? Colors.white : Colors.black54,
-                  textcolor: isSelected == true ? Colors.white : Colors.black,
-                  color: isSelected == true
-                      ? Colors.deepPurple
-                      : Colors.grey.shade200,
-                  ontap: () {
-                    setState(() {
-                      selectedindex = index;
-                    });
-                    print(selectedindex);
-                  },
-                  gift: datacontroller.finaldata?[index].gift ?? 0,
-                  rs: datacontroller.finaldata?[index].rs ?? 0,
-                );
-              },
+            child: Obx(
+              () => GridView.builder(
+                itemCount: datacontroller.finaldata.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 1 / 0.7),
+                itemBuilder: (context, index) {
+                  bool isSelected = index == selectedindex;
+                  return CustomContainer(
+                    subtextcolor:
+                        isSelected == true ? Colors.white : Colors.black54,
+                    textcolor: isSelected == true ? Colors.white : Colors.black,
+                    color: isSelected == true
+                        ? Colors.deepPurple
+                        : Colors.grey.shade200,
+                    ontap: () {
+                      setState(() {
+                        selectedindex = index;
+                      });
+                      print(selectedindex);
+                    },
+                    gift: datacontroller.finaldata[index].gift ?? 0,
+                    rs: datacontroller.finaldata[index].rs ?? 0,
+                  );
+                },
+              ),
             ),
           ),
           Spacer(),
@@ -118,7 +120,7 @@ class _HomeState extends State<Home> {
                                   fontSize: 14.sp, fontWeight: FontWeight.w600),
                             ),
                             Text(
-                                "₹ ${datacontroller.finaldata?[selectedindex].rs.toString() ?? ''}",
+                                "₹ ${datacontroller.finaldata[selectedindex].rs.toString()}",
                                 style: TextStyle(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w600))
@@ -147,7 +149,7 @@ class _HomeState extends State<Home> {
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w600)),
                             Text(
-                                '₹ ${datacontroller.finaldata?[selectedindex].rs.toString() ?? ''}',
+                                '₹ ${datacontroller.finaldata[selectedindex].rs.toString()}',
                                 style: TextStyle(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w600)),
@@ -164,13 +166,13 @@ class _HomeState extends State<Home> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                    'Gift ₹ ${datacontroller.finaldata?[selectedindex].gift.toString() ?? ''}',
+                                    'Gift ₹ ${datacontroller.finaldata[selectedindex].gift.toString()}',
                                     style: TextStyle(
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.deepPurple.shade400)),
                                 Text(
-                                    'Extra ₹ ${datacontroller.finaldata?[selectedindex].gift.toString() ?? ''} cashback in wallet after recharge ',
+                                    'Extra ₹ ${datacontroller.finaldata[selectedindex].gift.toString()} cashback in wallet after recharge ',
                                     style: TextStyle(
                                         color: Colors.deepPurple.shade400,
                                         fontSize: 12.sp,

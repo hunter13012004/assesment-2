@@ -5,32 +5,29 @@ import 'package:assesment/model/datamodel.dart';
 import 'package:get/get.dart';
 
 class Datacontroller extends GetxController {
-  List<Datamodel>? finaldata;
+  // Use RxList for reactive state
+  RxList<Datamodel> finaldata = <Datamodel>[].obs;
+
+  // Fetch data from dummy source
   Future<List<Datamodel>> fetchdata() async {
     List result = await Dummydata().data;
-
-    update();
     final data = result.map((m) => Datamodel.fromJson(m)).toList();
     return data;
   }
 
-  Future<List<Datamodel>> fetcheddata() async {
-    List<Datamodel> finalresult = await fetchdata();
-    finaldata = finalresult;
-    update();
-
-    if (finaldata != null) {
-      update();
-      return finaldata!;
-    } else {
-      throw Exception();
+  // Assign fetched data to the RxList
+  Future<void> fetcheddata() async {
+    try {
+      List<Datamodel> finalresult = await fetchdata();
+      finaldata.assignAll(finalresult); // Use assignAll to update RxList
+    } catch (e) {
+      print("Error fetching data: $e");
     }
   }
 
   @override
   void onInit() {
-    fetchdata();
-    fetcheddata();
+    fetcheddata(); // Only need to call fetcheddata
     super.onInit();
   }
 }
